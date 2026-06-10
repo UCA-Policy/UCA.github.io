@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Primary Meta Tags -->
+  <meta name="title" content="A2A: Action-to-Action Flow Matching for Robot Policy Learning">
+  <meta name="description" content="A2A enables high-quality action generation in a single inference step (0.56ms latency) by leveraging historical proprioceptive sequences as informed initialization for flow matching.">
+  <meta name="keywords" content="action-to-action, flow matching, diffusion policy, robot learning, visuomotor policy, real-time control, single-step inference">
+  <meta name="author" content="Jindou Jia, Gen Li, Xiangyu Chen, Tuo An, Yuxuan Hu, Jingliang Li, Jianfei Yang">
+  <meta name="robots" content="index, follow">
+  <meta name="language" content="English">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="A2A: Action-to-Action Flow Matching">
+  <meta property="og:description" content="High-quality robot action generation in a single inference step with 0.56ms latency through informed initialization.">
+  <meta property="og:image" content="static/images/teaser.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="A2A: Action-to-Action Flow Matching">
+  <meta name="twitter:description" content="Single-step action generation with 0.56ms latency for real-time robot control.">
+  <meta name="twitter:image" content="static/images/teaser.png">
+
+  <!-- Additional SEO -->
+  <meta name="theme-color" content="#A60000">
+  <meta name="msapplication-TileColor" content="#A60000">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <title>A2A: Action-to-Action Flow Matching</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
+  <link rel="apple-touch-icon" href="static/images/favicon.ico">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+
+</head>
+
+<body>
+
+  <main id="main-content">
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-body">
+        <div class="container is-max-desktop">
+          <div class="columns is-centered">
+            <div class="column has-text-centered">
+              <h1 class="title is-1 publication-title">Action-to-Action Flow Matching</h1>
+
+              <div class="venue-badge-row">
+                <span class="venue-badge">Robotics: Science and Systems (RSS) 2026</span>
+              </div>
+              
+              <div class="is-size-5 publication-authors">
+                <!-- Row 1: 5 authors -->
+                <span class="author-block">
+                  <a href="https://jiajindou.github.io/" target="_blank" rel="noopener noreferrer">Jindou Jia</a><sup>*</sup>,
+                </span>
+                <span class="author-block">
+                  <a href="https://reagan1311.github.io/" target="_blank" rel="noopener noreferrer">Gen Li</a><sup>*</sup>,
+                </span>
+                <span class="author-block">
+                  <a href="https://xyc0212.github.io/" target="_blank" rel="noopener noreferrer">Xiangyu Chen</a>,
+                </span>
+                <span class="author-block">
+                  <a href="https://morpheus-an.github.io/" target="_blank" rel="noopener noreferrer">Tuo An</a>,
+                </span>
+                <span class="author-block">
+                  <a href="#" target="_blank" rel="noopener noreferrer">Yuxuan Hu</a>
+                </span>
+                <br>
+                <!-- Row 2: 3 authors -->
+                <span class="author-block">
+                  <a href="https://lorenzo-0-0.github.io/" target="_blank" rel="noopener noreferrer">Jingliang Li</a>,
+                </span>
+                <span class="author-block">
+                  <a href="https://www.linkedin.com/in/xinying-guo-3307a124b/?originalSubdomain=sg" target="_blank" rel="noopener noreferrer">Xinying Guo</a>,
+                </span>
+                <span class="author-block">
+                  <a href="https://marsyang.site/" target="_blank" rel="noopener noreferrer">Jianfei Yang</a><sup>†</sup>
+                </span>
+              </div>
+              
+              <div class="institution-row">
+                <span class="institution-name">Nanyang Technological University</span>
+                <span class="author-note"><sup>*</sup>Equal contribution</span>
+                <span class="author-note"><sup>†</sup>Corresponding Author</span>
+              </div>
+              
+              <div class="logo-container">
+                <img src="static/images/微信图片_20260128192122_92_1029.png" alt="NTU Logo" class="ntu-logo">
+                <img src="static/images/mars_lab_main_white.png" alt="MARS Lab Logo" class="mars-logo">
+              </div>
+
+              <!-- Paper Links -->
+              <div class="column has-text-centered">
+                <div class="publication-links">
+                  <span class="link-block">
+                    <a href="https://arxiv.org/abs/2602.07322" class="external-link button is-dark" target="_blank" rel="noopener noreferrer">
+                      <span class="icon">
+                        <i class="ai ai-arxiv"></i>
+                      </span>
+                      <span>arXiv</span>
+                    </a>
+                  </span>
+                  <span class="link-block">
+                    <a href="A2A.pdf" class="external-link button is-dark" target="_blank" rel="noopener noreferrer">
+                      <span class="icon">
+                        <i class="fas fa-file-pdf"></i>
+                      </span>
+                      <span>PDF</span>
+                    </a>
+                  </span>
+                  <span class="link-block">
+                    <a href="https://github.com/JIAjindou/A2A_Flow_Matching" class="external-link button is-dark" target="_blank" rel="noopener noreferrer">
+                      <span class="icon">
+                        <i class="fab fa-github"></i>
+                      </span>
+                      <span>Code</span>
+                    </a>
+                  </span>
+                  <span class="link-block">
+                    <a href="#" class="external-link button is-dark" target="_blank" rel="noopener noreferrer">
+                      <span class="icon">
+                        <i class="fas fa-video"></i>
+                      </span>
+                      <span>Video</span>
+                    </a>
+                  </span>
+                </div>
+              </div>
+
+              <!-- Demo Video -->
+              <div class="column has-text-centered" id="demo-video" style="margin-top: 3rem;">
+                <div class="video-container" style="max-width: 900px; margin: 0 auto;">
+                  <video controls loop playsinline style="width: 100%; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);">
+                    <source src="static/images/new/new-vedio.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Abstract -->
+    <section class="section hero is-light">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3">Abstract</h2>
+            <div class="content has-text-justified">
+              <p>
+                Diffusion-based policies have recently achieved remarkable success in robotics by formulating action prediction as a conditional denoising process. However, the standard practice of sampling from random Gaussian noise often requires multiple iterative steps to produce clean actions, leading to <span class="keyword-highlight-contrary">high inference latency</span> that incurs a major bottleneck for real-time control. In this paper, we challenge the necessity of uninformed noise sampling and propose <span class="keyword-highlight-primary">Action-to-Action flow matching (A2A)</span>, a novel policy paradigm that shifts from random sampling to initialization informed by the previous action. Unlike existing methods that treat proprioceptive action feedback as static conditions, A2A leverages <span class="keyword-highlight-contrary">historical proprioceptive sequences</span>, embedding them into a high-dimensional latent space as the starting point for action generation. This design bypasses costly iterative denoising while effectively capturing the robot's physical dynamics and temporal continuity. Extensive experiments demonstrate that A2A exhibits <span class="keyword-highlight-primary">high training efficiency</span>, <span class="keyword-highlight-primary">fast inference speed</span>, and <span class="keyword-highlight-primary">improved generalization</span>. Notably, A2A enables high-quality action generation in as few as <strong>a single inference step (0.56 ms latency)</strong>, and exhibits superior robustness to visual perturbations and enhanced generalization to unseen configurations. Lastly, we also extend A2A to video generation, demonstrating its broader versatility in temporal modeling.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Key Insight -->
+    <section class="section">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column is-full">
+            <h2 class="title is-3">Key Insight: From Noise-to-Action to Action-to-Action</h2>
+            <div class="content has-text-justified">
+              <p>
+                Traditional diffusion models were originally developed for high-fidelity image synthesis and video generation, where generation typically begins from <span class="keyword-highlight-contrary">uninformed noise</span> due to the absence of meaningful priors. We observe that robots operate under a fundamentally different regime, that enable action-to-action feasible:
+              </p>
+              <ol>
+                <li>Modern robotic systems have <span class="keyword-highlight-primary">continuous proprioceptive feedback</span></li>
+                <li>Adjacent action chunks exhibit <span class="keyword-highlight-primary">inherent similarity</span> due to physical consistency</li>
+                <li>Historical actions can serve as a <span class="keyword-highlight-primary">strong initialization signal</span> for action generation</li>
+              </ol>
+              <figure class="image framework-figure" style="margin-top: 2rem;">
+                <img src="static/images/Fig1.png" alt="A2A Main Framework" />
+              </figure>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Ingredient 1:High Training Efficiency -->
+    <section class="section hero is-light">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column is-full">
+            <h2 class="title is-3">Ingredient 1: High Training Efficiency</h2>
+            <div class="content has-text-justified">
+              <p>
+                A2A converges to high success quickly and keeps stable performance even with limited data.
+              </p>
+              <ul>
+                <li><span class="keyword-highlight-primary">Fast convergence:</span> Reaches a stable 100% success rate within 40 training epochs.</li>
+                <li><span class="keyword-highlight-primary">High sample efficiency:</span> Reaches and maintains a high performance ceiling as the number of demonstrations increases.</li>
+      
+              </ul>
+              <!-- Fig2: Training Efficiency Details -->
+              <figure class="image no-hover" style="margin-top: 2rem; max-width: 75%; margin-left: auto; margin-right: auto;">
+                <img src="static/images/new/bdfa71a809238d5f8848d6e636b44ae5.png" alt="Training Efficiency Details" />
+              </figure>
+          
+              
+              <!-- Quantitative Comparison Table -->
+              <h3 class="title is-4" style="margin-top: 2rem;">Quantitative Comparison</h3>
+              <p class="has-text-centered" style="color: #9ca3af;">Success rates across 5 simulation tasks (100 demonstrations, 30 epochs)</p>
+              <div class="table-container">
+                <table class="table is-bordered is-striped is-fullwidth">
+                  <thead>
+                    <tr>
+                      <th>Methods</th>
+                      <th>Steps</th>
+                      <th>Close Box</th>
+                      <th>Pick Cube</th>
+                      <th>Stack Cube</th>
+                      <th>Open Drawer</th>
+                      <th>Pick-Place Bowl</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="is-selected">
+                      <td><strong>A2A (Ours)</strong></td>
+                      <td>6</td>
+                      <td><strong>92%</strong></td>
+                      <td><strong>92%</strong></td>
+                      <td><strong>86%</strong></td>
+                      <td><strong>92%</strong></td>
+                      <td>90%</td>
+                    </tr>
+                    <tr>
+                      <td>VITA</td>
+                      <td>6</td>
+                      <td>88%</td>
+                      <td>88%</td>
+                      <td>80%</td>
+                      <td>90%</td>
+                      <td><strong>92%</strong></td>
+                    </tr>
+                    <tr>
+                      <td>FM-UNet</td>
+                      <td>10</td>
+                      <td>82%</td>
+                      <td>70%</td>
+                      <td>28%</td>
+                      <td>34%</td>
+                      <td>68%</td>
+                    </tr>
+                    <tr>
+                      <td>FM-DiT</td>
+                      <td>10</td>
+                      <td>58%</td>
+                      <td>88%</td>
+                      <td>26%</td>
+                      <td>28%</td>
+                      <td>84%</td>
+                    </tr>
+                    <tr>
+                      <td>DDPM-UNet</td>
+                      <td>100</td>
+                      <td>72%</td>
+                      <td>60%</td>
+                      <td>36%</td>
+                      <td>64%</td>
+                      <td>66%</td>
+                    </tr>
+                    <tr>
+                      <td>DDPM-DiT</td>
+                      <td>100</td>
+                      <td>58%</td>
+                      <td>58%</td>
+                      <td>16%</td>
+                      <td>14%</td>
+                      <td>68%</td>
+                    </tr>
+                    <tr>
+                      <td>DDIM-UNet</td>
+                      <td>40</td>
+                      <td>70%</td>
+                      <td>56%</td>
+                      <td>36%</td>
+                      <td>64%</td>
+                      <td>82%</td>
+                    </tr>
+                    <tr>
+                      <td>Score-UNet</td>
+                      <td>100</td>
+                      <td>36%</td>
+                      <td>36%</td>
+                      <td>12%</td>
+                      <td>0%</td>
+                      <td>4%</td>
+                    </tr>
+                    <tr>
+                      <td>ACT</td>
+                      <td>1</td>
+                      <td>82%</td>
+                      <td>86%</td>
+                      <td>32%</td>
+                      <td>80%</td>
+                      <td>60%</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              
+              <!-- Real-world test -->
+              <h3 class="title is-4" style="margin-top: 2rem;">Real-world test</h3>
+              <figure class="image no-hover" style="margin-top: 1rem;">
+                <img src="static/images/new/a8c73d96b2dc94554b5712853e9836fa.png" alt="Real-world test" />
+              </figure>
+              <p class="figure-caption">
+                Pick the cube from different locations with a limited 10 training demonstrations. A2A demonstrates rapid adaptation and high success rates, showcasing its superior data efficiency in novel scenarios.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Ingredient 2: Fast Inference Speed -->
+    <section class="section">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column is-full">
+            <h2 class="title is-3">Ingredient 2: Fast Inference Speed</h2>
+            <div class="content has-text-justified">
+              <p>
+                A2A can run in single-step with sub-millisecond latency while keeping high performance.
+              </p>
+              <ul>
+                <li><span class="keyword-highlight-primary">Rapid performance peak:</span> Success rates saturate at just 4 inference steps.</li>
+                <li><span class="keyword-highlight-primary">Single-step can still work well:</span> When limited to one-step inference, success rises above 90% after 32 epochs.</li>
+                <li><span class="keyword-highlight-primary">Latency:</span> Mean inference latency ~1 ms, and <strong>0.56 ms</strong> in the single-step regime (RTX 5090 benchmark).</li>
+              </ul>
+              <!-- Fig3: Inference Speed Analysis -->
+              <figure class="image no-hover" style="margin-top: 2rem;">
+                <img src="static/images/new/5b309f0f375711836233548a9cd8fa7d.png" alt="Inference Speed Analysis" />
+              </figure>
+          
+              
+              <!-- Real-world comparison videos -->
+              <h3 class="title is-4">Real-World Inference Comparison</h3>
+              <p class="has-text-justified" style="color: #9ca3af; margin-bottom: 1.5rem;">
+                Side-by-side comparison of different methods performing the same task in real-world settings. With 30 demonstrations, DDPM-UNet and FM-UNet achieves lower success rate and exhibit significant hesitation during the operation.
+              </p>
+              <div class="columns is-multiline video-grid comparison-grid">
+                <div class="column is-one-third">
+                  <div class="video-card">
+                    <p class="video-title">A2A (Ours)</p>
+                    <video autoplay controls loop playsinline muted>
+                      <source src="static/videos/real_world/A2A.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                </div>
+                <div class="column is-one-third">
+                  <div class="video-card">
+                    <p class="video-title">DDPM-UNet</p>
+                    <video autoplay controls loop playsinline muted>
+                      <source src="static/videos/real_world/DDPM-UNet.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                </div>
+                <div class="column is-one-third">
+                  <div class="video-card">
+                    <p class="video-title">FM-UNet</p>
+                    <video autoplay controls loop playsinline muted>
+                      <source src="static/videos/real_world/FM-UNet.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Ingredient 3: Improved Generalization -->
+    <section class="section hero is-light">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column is-full">
+            <h2 class="title is-3">Ingredient 3: Improved Generalization</h2>
+            <div class="content has-text-justified">
+              <p>
+                A2A generalizes better than diffusion/flow baselines under heavy visual randomization and unseen Configuration.
+              </p>
+              
+              <!-- Part 1: Visual Generalization -->
+              <h3 class="title is-4" style="margin-top: 2rem;">Visual Generalization</h3>
+              <p>
+                We evaluate A2A under progressively challenging visual perturbations. Level 0 is the original training environment, while Levels 1-3 incrementally add new backgrounds, lighting conditions, and viewpoints.
+              </p>
+              
+              <!-- Four simulation videos in a row -->
+              <div class="columns video-grid four-col-grid" style="margin-top: 1.5rem;">
+                <div class="column is-one-quarter">
+                  <div class="video-card">
+                    <div class="video-label">
+                      <strong>Level 0</strong>
+                      <span class="subtitle-text">Original</span>
+                    </div>
+                    <video autoplay controls loop playsinline muted>
+                      <source src="static/videos/simulation/L0.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                </div>
+                <div class="column is-one-quarter">
+                  <div class="video-card">
+                    <div class="video-label">
+                      <strong>Level 1</strong>
+                      <span class="subtitle-text">+ New Backgrounds</span>
+                    </div>
+                    <video autoplay controls loop playsinline muted>
+                      <source src="static/videos/simulation/L1.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                </div>
+                <div class="column is-one-quarter">
+                  <div class="video-card">
+                    <div class="video-label">
+                      <strong>Level 2</strong>
+                      <span class="subtitle-text">+ Lighting</span>
+                    </div>
+                    <video autoplay controls loop playsinline muted>
+                      <source src="static/videos/simulation/L2.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                </div>
+                <div class="column is-one-quarter">
+                  <div class="video-card">
+                    <div class="video-label">
+                      <strong>Level 3</strong>
+                      <span class="subtitle-text">+ Viewpoints</span>
+                    </div>
+                    <video autoplay controls loop playsinline muted>
+                      <source src="static/videos/simulation/L3.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- TABLE II: Visual Generalization Results -->
+              <h4 class="title is-5" style="margin-top: 2rem;">Visual Generalization Results</h4>
+              <p class="has-text-centered" style="color: #9ca3af;">Success rates under different levels of visual perturbation</p>
+              <div class="table-container">
+                <table class="table is-bordered is-striped is-fullwidth">
+                  <thead>
+                    <tr>
+                      <th>Methods</th>
+                      <th>Steps</th>
+                      <th>Level 0</th>
+                      <th>Level 1</th>
+                      <th>Level 2</th>
+                      <th>Level 3</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="is-selected">
+                      <td><strong>A2A (Ours)</strong></td>
+                      <td>6</td>
+                      <td><strong>92%</strong></td>
+                      <td><strong>42%</strong></td>
+                      <td><strong>40%</strong></td>
+                      <td><strong>38%</strong></td>
+                    </tr>
+                    <tr class="is-selected">
+                      <td><strong>A2A (Ours)</strong></td>
+                      <td>1</td>
+                      <td>90%</td>
+                      <td>36%</td>
+                      <td>34%</td>
+                      <td>32%</td>
+                    </tr>
+                    <tr>
+                      <td>FM-UNet</td>
+                      <td>10</td>
+                      <td>70%</td>
+                      <td>24%</td>
+                      <td>20%</td>
+                      <td>16%</td>
+                    </tr>
+                    <tr>
+                      <td>DDPM-UNet</td>
+                      <td>100</td>
+                      <td>60%</td>
+                      <td>18%</td>
+                      <td>14%</td>
+                      <td>10%</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              
+              <!-- Real-world test -->
+              <h4 class="title is-5" style="margin-top: 2rem;">Real-world test</h4>
+              <!-- Fig4: Real-world generalization -->
+              <figure class="image no-hover" style="margin-top: 1rem;">
+                <img src="static/images/new/3ad7d3d80490a4d47408d64ba22f3255.png" alt="Real-World Generalization" />
+              </figure>
+              <p class="mt-4">
+                <strong>(a)</strong> In-distribution evaluation: A2A achieves 100% success rate on the standard Pick Cube task with only 30 training trajectories.
+                <strong>(b)</strong> Out-of-distribution stress test: When the target cube is replaced with an unseen glowing variant, baseline methods (FM-UNet, DDPM-UNet) completely fail (0% success), while A2A maintains robust performance with 80% success rate.
+              </p>
+              
+              <!-- Real-world generalization videos -->
+              <div class="columns video-grid" style="margin-top: 1.5rem;">
+                <div class="column is-half">
+                  <div class="video-card">
+                    <p class="video-title">Pick Cube (In-Distribution)</p>
+                    <video autoplay controls loop playsinline muted>
+                      <source src="static/videos/real_world/pick_cube.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                </div>
+                <div class="column is-half">
+                  <div class="video-card">
+                    <p class="video-title">Pick Cube (New Target)</p>
+                    <video autoplay controls loop playsinline muted>
+                      <source src="static/videos/real_world/pick_cube_new_target.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Part 2: Initial State Generalization -->
+              <h3 class="title is-4" style="margin-top: 3rem;">Initial State Generalization</h3>
+              <p>
+                By injecting a small amount of Gaussian noise into the historical actions, A2A demonstrates strong generalization to diverse initial configurations. Even when objects are placed in unseen positions or orientations at the start of an episode, A2A successfully adapts and completes the task.
+              </p>
+              
+              <!-- Three initial state videos -->
+              <div class="columns video-grid three-col-grid" style="margin-top: 1.5rem;">
+                <div class="column is-one-third">
+                  <div class="video-card">
+                    <p class="video-title">Configuration 1</p>
+                    <video controls loop playsinline muted>
+                      <source src="static/videos/simulation/initial_state/6.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                </div>
+                <div class="column is-one-third">
+                  <div class="video-card">
+                    <p class="video-title">Configuration 2</p>
+                    <video controls loop playsinline muted>
+                      <source src="static/videos/simulation/initial_state/13.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                </div>
+                <div class="column is-one-third">
+                  <div class="video-card">
+                    <p class="video-title">Configuration 3</p>
+                    <video controls loop playsinline muted>
+                      <source src="static/videos/simulation/initial_state/15.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BibTeX Section -->
+    <section class="section" id="BibTeX">
+      <div class="container is-max-desktop content">
+        <h2 class="title is-3 has-text-centered">BibTeX</h2>
+        <pre><code>@inproceedings{jia2026a2a,
+    title     = {Action-to-Action Flow Matching},
+    author    = {Jindou Jia and Gen Li and Xiangyu Chen and Tuo An and Yuxuan Hu and Jingliang Li and Xinying Guo and Jianfei Yang},
+    booktitle = {Robotics: Science and Systems (RSS)},
+    year      = {2026}
+}</code></pre>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="columns is-centered">
+          <div class="column is-8">
+            <div class="content">
+              <p>
+                This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank" rel="noopener noreferrer">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank" rel="noopener noreferrer">Nerfies</a> and <a href="https://simchowitzlabpublic.github.io/much-ado-about-noising-project/#" target="_blank" rel="noopener noreferrer">MAAN</a> project page.
+                You are free to borrow the source code of this website, we just ask that you link back to this page in the footer.
+                <br>
+                This website is licensed under a <a rel="license noopener noreferrer" href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+  </main>
+
+</body>
+
+</html>
