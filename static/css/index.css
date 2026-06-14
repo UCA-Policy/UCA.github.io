@@ -1,0 +1,1198 @@
+/* Modern CSS Variables for consistent theming - Dark Theme */
+:root {
+  --primary-color: #A60000;
+  --primary-hover: #8B0000;
+  --secondary-color: #00A6A6;
+  --accent-color: #00A6A6;
+  --text-primary: #ffffff;
+  --text-secondary: #9ca3af;
+  --text-light: #6b7280;
+  --background-primary: #000000;
+  --background-secondary: #202020;
+  --background-accent: #262626;
+  --border-color: #404040;
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.5), 0 2px 4px -2px rgb(0 0 0 / 0.3);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.6), 0 4px 6px -4px rgb(0 0 0 / 0.4);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.7), 0 8px 10px -6px rgb(0 0 0 / 0.5);
+  --gradient-primary: linear-gradient(135deg, #A60000 0%, #8B0000 100%);
+  --gradient-accent: linear-gradient(135deg, #00A6A6 0%, #008B8B 100%);
+  --gradient-subtle: linear-gradient(135deg, #262626 0%, #1a1a1a 100%);
+  --border-radius: 12px;
+  --border-radius-lg: 16px;
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --font-display: 'Newsreader', Georgia, 'Times New Roman', serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+  --card-bg: rgba(32, 32, 32, 0.6);
+  --card-bg-solid: #202020;
+  --card-stroke: rgba(64, 64, 64, 0.5);
+  --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Smooth scrolling for better UX */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--text-primary);
+  line-height: 1.65;
+  font-size: 16px;
+  background-color: var(--background-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* All titles and subtitles should be white */
+.title, .subtitle, h1, h2, h3, h4, h5, h6 {
+  color: #000000 !important;
+}
+
+/* Keyword highlighting styles - brighter colors for better visibility on dark theme */
+.keyword-highlight-primary {
+  color: #CA324C;
+  font-weight: 700;
+}
+
+.keyword-highlight-contrary {
+  color: #44D4D4;
+  font-weight: 600;
+}
+
+/* Callout blocks for notes and insights */
+.callout {
+  padding: 1.25rem 1.5rem;
+  margin: 1.5rem 0;
+  border-left: 4px solid;
+  border-radius: 8px;
+  background-color: var(--background-secondary);
+}
+
+.callout-note {
+  border-left-color: #44D4D4;
+  background-color: rgba(68, 212, 212, 0.1);
+}
+
+.callout-note strong {
+  color: #44D4D4;
+}
+
+.callout-insight {
+  border-left-color: #CA324C;
+  background-color: rgba(202, 50, 76, 0.1);
+}
+
+.callout-insight strong {
+  color: #CA324C;
+}
+
+.callout p {
+  margin: 0;
+  color: var(--text-primary);
+  line-height: 1.6;
+}
+
+
+/* Modern Button Styles */
+.button {
+  border-radius: var(--border-radius) !important;
+  font-weight: 600 !important;
+  transition: var(--transition) !important;
+  border: 2px solid transparent !important;
+  position: relative;
+  overflow: hidden;
+}
+
+.button.is-dark {
+  background: var(--background-accent) !important;
+  border: none !important;
+  color: white !important;
+  box-shadow: var(--shadow-md);
+}
+
+.button.is-dark:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+  background: var(--primary-color) !important;
+}
+
+.button.is-dark:active {
+  transform: translateY(0);
+  box-shadow: var(--shadow-md);
+}
+
+.footer .icon-link {
+    font-size: 25px;
+    color: var(--text-secondary);
+    transition: var(--transition);
+}
+
+.footer .icon-link:hover {
+    color: var(--secondary-color);
+    transform: translateY(-2px);
+}
+
+.link-block {
+    background: var(--background-accent);
+    border-radius: var(--border-radius);
+    padding: 4px;
+    display: inline-block;
+}
+
+.link-block a {
+    margin: 8px 4px;
+}
+
+.dnerf {
+  font-variant: small-caps;
+}
+
+
+/* Hero Section Modernization */
+.hero {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero.is-light {
+  background: var(--background-secondary);
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.hero-body {
+  padding: 4rem 1.5rem;
+}
+
+.teaser .hero-body {
+  padding-top: 2rem;
+  padding-bottom: 4rem;
+}
+
+.teaser {
+  font-family: var(--font-body);
+}
+
+
+/* Publication Content Styling */
+.publication-title {
+    font-family: var(--font-display) !important;
+    font-weight: 600 !important;
+    color: #ffffff !important;
+    margin-bottom: 1.5rem !important;
+    line-height: 1.1 !important;
+    letter-spacing: -0.015em !important;
+}
+
+.publication-subtitle {
+    color: var(--text-secondary) !important;
+    font-weight: 400;
+    margin-top: 0.5rem;
+}
+
+.publication-banner {
+  max-height: 70vh;
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-xl);
+  margin: 2rem 0;
+}
+
+.publication-banner video {
+  position: relative;
+  left: auto;
+  top: auto;
+  transform: none;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  border-radius: var(--border-radius-lg);
+}
+
+.publication-header .hero-body {
+  padding: 6rem 1.5rem 4rem;
+}
+
+.publication-authors {
+    font-family: var(--font-body) !important;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+}
+
+.publication-venue {
+    color: var(--text-secondary);
+    width: fit-content;
+    font-weight: 600;
+    background: var(--background-accent);
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius);
+    margin-top: 1rem;
+    display: inline-block;
+}
+
+.publication-awards {
+    color: #CA324C;
+    width: fit-content;
+    font-weight: 700;
+    background: linear-gradient(135deg, #fef2f2, #fee2e2);
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius);
+    border-left: 4px solid #CA324C;
+    margin-top: 1rem;
+}
+
+.publication-authors a {
+   color: var(--secondary-color) !important;
+   text-decoration: none;
+   font-weight: 600;
+   transition: var(--transition);
+   position: relative;
+}
+
+.publication-authors a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background: var(--gradient-accent);
+    transition: var(--transition);
+}
+
+.publication-authors a:hover::after {
+    width: 100%;
+}
+
+.publication-authors a:hover {
+    color: var(--accent-color) !important;
+    filter: brightness(1.2);
+}
+
+.author-block {
+  display: inline-block;
+  margin-right: 0.5rem;
+}
+
+.publication-banner img {
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-lg);
+  transition: var(--transition);
+}
+
+.publication-banner img:hover {
+  transform: scale(1.02);
+  box-shadow: var(--shadow-xl);
+}
+
+/* Modern Video and Carousel Styling */
+.publication-video {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.25%;
+    overflow: hidden;
+    border-radius: var(--border-radius-lg) !important;
+    box-shadow: var(--shadow-xl);
+    transition: var(--transition);
+}
+
+.publication-video:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-xl);
+}
+
+.publication-video iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: var(--border-radius-lg);
+}
+
+.publication-body img {
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-md);
+  transition: var(--transition);
+}
+
+.publication-body img:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Video styling */
+video {
+  width: 100%;
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-xl);
+}
+
+/* Image styling */
+.image img {
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-md);
+  transition: var(--transition);
+}
+
+.image img:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Disable hover effect and remove borders for specific figures */
+.image.no-hover img {
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.image.no-hover img:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+figure.image {
+  margin: 1.5rem 0;
+}
+
+/* Framework figure — hover zoom removed */
+.framework-figure {
+  overflow: visible;
+  padding: 2rem;
+  margin: -2rem;
+}
+
+.framework-figure img {
+  transition: box-shadow 0.4s ease;
+  transform-origin: center center;
+}
+
+.framework-figure img:hover {
+  transform: none;
+  box-shadow: var(--shadow-md);
+}
+
+.results-carousel {
+  overflow: hidden;
+  padding: 1rem 0;
+}
+
+.results-carousel .item {
+  margin: 1rem;
+  overflow: hidden;
+  padding: 1.5rem;
+  font-size: 0;
+  background: var(--background-primary);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-md);
+  transition: var(--transition);
+  border: 1px solid var(--border-color);
+}
+
+.results-carousel .item:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.results-carousel .item img,
+.results-carousel video {
+  margin: 0;
+  border-radius: var(--border-radius);
+  width: 100%;
+  height: auto;
+}
+
+.results-carousel .subtitle {
+  font-size: 1rem !important;
+  color: var(--text-secondary);
+  margin-top: 1rem;
+  font-weight: 500;
+}
+
+/* Pagination and Misc Improvements */
+.slider-pagination .slider-page {
+  background: var(--primary-color);
+  border-radius: 50%;
+  transition: var(--transition);
+}
+
+.slider-pagination .slider-page.is-active {
+  background: var(--primary-hover);
+  transform: scale(1.2);
+}
+
+.eql-cntrb { 
+  font-size: 0.875rem;
+  color: var(--text-light);
+  font-style: italic;
+}
+
+/* Section Titles */
+.title.is-3 {
+  font-family: var(--font-display) !important;
+  font-weight: 600 !important;
+  color: #ffffff !important;
+  letter-spacing: -0.01em;
+  margin-bottom: 2rem !important;
+  position: relative;
+  padding-bottom: 1rem;
+}
+
+.title.is-3::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: var(--gradient-accent);
+  border-radius: 2px;
+}
+
+/* Left-aligned title underline for non-centered sections */
+.column.is-full .title.is-3::after {
+  left: 0;
+  transform: none;
+}
+
+/* Content Improvements */
+.content.has-text-justified {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--text-secondary);
+}
+
+.content.has-text-justified p {
+  margin-bottom: 1.5rem;
+}
+
+.content ol,
+.content ul {
+  margin-left: 1.5rem;
+  margin-bottom: 1.5rem;
+  color: var(--text-secondary);
+}
+
+.content li {
+  margin-bottom: 0.5rem;
+}
+
+.content strong {
+  color: #ffffff;
+}
+
+/* Table Styling */
+.table-container {
+  overflow-x: auto;
+  margin: 1.5rem 0;
+}
+
+.table {
+  background-color: var(--background-secondary);
+  color: var(--text-primary);
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th {
+  background-color: var(--background-accent) !important;
+  color: #ffffff !important;
+  border-color: var(--border-color) !important;
+  font-weight: 600;
+  padding: 1rem;
+}
+
+.table td {
+  border-color: var(--border-color) !important;
+  color: var(--text-primary);
+  padding: 0.75rem 1rem;
+}
+
+/* No hover effect on table rows */
+.table tbody tr:hover {
+  background-color: transparent;
+}
+
+.table tbody tr.is-selected {
+  background-color: rgba(0, 166, 166, 0.15) !important;
+}
+
+.table tbody tr.is-selected td {
+  color: #ffffff;
+  border-color: var(--border-color) !important;
+}
+
+.table.is-striped tbody tr:not(.is-selected):nth-child(even) {
+  background-color: var(--background-secondary);
+}
+
+.table.is-striped tbody tr:not(.is-selected):nth-child(odd) {
+  background-color: var(--background-primary);
+}
+
+.table.is-bordered td,
+.table.is-bordered th {
+  border: 1px solid var(--border-color) !important;
+}
+
+/* Table caption text - ensure visibility */
+.table-caption,
+.table-container + p,
+.table-container ~ p.has-text-centered {
+  color: var(--text-secondary) !important;
+}
+
+/* Footer Improvements */
+.footer {
+  background: var(--background-secondary);
+  border-top: 1px solid var(--border-color);
+  padding: 3rem 1.5rem;
+}
+
+.footer .content {
+  color: #c9d1d9;
+  line-height: 1.7;
+}
+
+.footer .content p {
+  color: #c9d1d9 !important;
+}
+
+.footer a {
+  color: var(--secondary-color);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.footer a:hover {
+  color: var(--accent-color);
+  filter: brightness(1.2);
+  text-decoration: underline;
+}
+
+/* BibTeX Styling */
+pre {
+  background: var(--background-accent) !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: var(--border-radius) !important;
+  padding: 1.5rem !important;
+  font-size: 0.9rem !important;
+  overflow-x: auto;
+  box-shadow: var(--shadow-sm);
+}
+
+code {
+  background: var(--background-accent) !important;
+  color: var(--text-primary) !important;
+  font-family: 'SF Mono', 'Monaco', 'Cascadia Code', 'Roboto Mono', monospace !important;
+}
+
+/* Section styling */
+.section {
+  background-color: var(--background-primary);
+  padding: 3rem 1.5rem;
+}
+
+.section.hero.is-light {
+  background: var(--background-secondary) !important;
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+}
+
+/* Utility Classes */
+.mt-4 {
+  margin-top: 1.5rem;
+}
+
+.has-text-grey {
+  color: var(--text-light) !important;
+}
+
+/* Mobile Responsive Improvements */
+@media screen and (max-width: 768px) {
+  .hero-body {
+    padding: 2rem 1rem;
+  }
+  
+  .publication-header .hero-body {
+    padding: 3rem 1rem 2rem;
+  }
+  
+  .publication-title {
+    font-size: 2.5rem !important;
+    line-height: 1.2 !important;
+    margin-bottom: 1.5rem !important;
+  }
+  
+  .publication-authors {
+    font-size: 1rem !important;
+  }
+  
+  .button {
+    margin: 0.25rem !important;
+    font-size: 0.875rem !important;
+    padding: 0.75rem 1rem !important;
+  }
+  
+  .results-carousel .item {
+    margin: 0.5rem;
+    padding: 1rem;
+  }
+  
+  .teaser .hero-body {
+    padding: 1rem;
+  }
+  
+  .content.has-text-justified {
+    font-size: 1rem;
+  }
+  
+  .section {
+    padding: 2rem 1rem;
+  }
+  
+  .table {
+    font-size: 0.85rem;
+  }
+  
+  .table th,
+  .table td {
+    padding: 0.5rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .publication-title {
+    font-size: 2rem !important;
+  }
+  
+  .hero-body {
+    padding: 1.5rem 0.75rem;
+  }
+  
+  .link-block {
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+  
+  .button {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .title.is-3 {
+    font-size: 1.4rem;
+  }
+}
+
+/* Tablet Responsive */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .hero-body {
+    padding: 3rem 2rem;
+  }
+  
+  .publication-header .hero-body {
+    padding: 4rem 2rem 3rem;
+  }
+}
+
+/* Animation for page load */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero, .section {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+/* Improved focus states for accessibility */
+.button:focus,
+a:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+/* Selection color */
+::selection {
+  background-color: var(--secondary-color);
+  color: var(--background-primary);
+}
+
+/* Scrollbar styling for webkit browsers */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-light);
+}
+
+/* Print styles */
+@media print {
+  .hero, .section {
+    animation: none;
+  }
+  
+  .button {
+    background: transparent !important;
+    color: var(--text-primary) !important;
+    box-shadow: none !important;
+  }
+}
+
+/* ===== Enhanced Video Styling ===== */
+.video-container {
+  position: relative;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  transition: var(--transition);
+}
+
+.video-container:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-xl);
+}
+
+.video-label {
+  text-align: center;
+  margin-bottom: 0.75rem;
+}
+
+.video-label strong {
+  color: #ffffff;
+  font-size: 0.95rem;
+}
+
+.video-label .subtitle-text {
+  display: block;
+  font-size: 0.8rem;
+  color: #9ca3af;
+  margin-top: 0.25rem;
+}
+
+/* Video grid spacing */
+.video-grid {
+  gap: 1.5rem;
+}
+
+/* Real-world comparison layout */
+.columns.comparison-grid {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 1.5rem;
+}
+
+.comparison-grid .column {
+  flex: 1 1 0;
+}
+
+.comparison-grid .video-card {
+  height: 100%;
+  background: transparent;
+  background-color: transparent;
+  padding: 1.25rem;
+}
+
+.comparison-grid .video-card:hover {
+  background-color: transparent;
+}
+
+.comparison-grid video {
+  aspect-ratio: 16 / 9;
+  object-fit: contain;
+  background: #0b0b0b;
+}
+
+/* Four column grid - Visual Generalization */
+.columns.four-col-grid {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 1rem;
+}
+
+.four-col-grid .column {
+  flex: 1 1 0;
+  width: 25%;
+}
+
+.four-col-grid .video-card {
+  height: 100%;
+}
+
+/* Three column grid - Initial State Generalization */
+.columns.three-col-grid {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 1.5rem;
+}
+
+.three-col-grid .column {
+  flex: 1 1 0;
+  width: 33.333%;
+}
+
+.three-col-grid .video-card {
+  height: 100%;
+}
+
+/* ===== Enhanced Logo Styling ===== */
+.logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1.5rem;
+  padding: 1rem 0;
+  width: 100%;
+  max-width: 420px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.logo-container img {
+  transition: var(--transition);
+}
+
+/* NTU Logo - keep original colors, blend transparent/white background */
+.logo-container img.ntu-logo {
+  height: 80px;
+}
+
+/* MARS Lab Logo */
+.logo-container img.mars-logo {
+  height: 85px;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.logo-container img:hover {
+  transform: scale(1.05);
+}
+
+/* ===== Institution and Author Styling ===== */
+.institution-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  margin-top: 0.75rem;
+}
+
+.institution-name {
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.equal-contrib {
+  color: #9ca3af;
+  font-size: 0.85rem;
+}
+
+.author-note {
+  color: #9ca3af;
+  font-size: 0.75rem;
+}
+
+/* ===== Section Title Enhancements ===== */
+.title.is-4 {
+  color: #ffffff !important;
+  font-weight: 600;
+  margin-top: 2.5rem !important;
+  margin-bottom: 1rem !important;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--border-color);
+}
+
+.title.is-5 {
+  color: #ffffff !important;
+  font-weight: 600;
+  margin-top: 2rem !important;
+  margin-bottom: 0.75rem !important;
+}
+
+/* ===== Enhanced Table Styling ===== */
+.table-container {
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  margin: 1.5rem 0 2rem;
+}
+
+.table {
+  margin-bottom: 0;
+}
+
+.table th {
+  text-align: center !important;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.table td {
+  text-align: center !important;
+  vertical-align: middle;
+}
+
+.table td:first-child {
+  text-align: left !important;
+  font-weight: 500;
+}
+/* ==========================================
+   视频卡片基础样式 (适用于第三板块的纯黑背景)
+   ========================================== */
+.video-card {
+  background-color: #1A1A1A; /* 提亮一点的深灰，在纯黑底上清晰可见 */
+  border-radius: var(--border-radius-lg);
+  padding: 1.25rem;
+  /* 加一层非常微弱的半透明白边，增强质感 */
+  border: 1px solid rgba(255, 255, 255, 0.06); 
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+.video-card video {
+  border-radius: 8px;
+  width: 100%;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+.video-card .video-title {
+  text-align: center;
+  margin-bottom: 0.875rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.95);
+}
+
+/* ==========================================
+   视频卡片自适应样式 (适用于第四板块的 .is-light 深灰背景)
+   ========================================== */
+.hero.is-light .video-card {
+  background-color: #050505; /* 压得很暗的纯黑，与深灰背景拉开对比 */
+  border: 1px solid rgba(255, 255, 255, 0.1); /* 边框稍微提亮一点点，框住白底视频 */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* --- 统一的悬浮 (Hover) 特效 --- */
+.video-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(0, 220, 220, 0.5); /* 你的主题青色 */
+  box-shadow: 
+    0 16px 40px -8px rgba(0, 0, 0, 0.6),
+    0 0 20px -4px rgba(0, 200, 200, 0.25);
+}
+
+/* ===== Gradient Accents ===== */
+.gradient-text {
+  background: var(--gradient-accent);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ===== Image Figure Enhancements ===== */
+figure.image {
+  border-radius: var(--border-radius);
+  overflow: hidden;
+}
+
+figure.image img {
+  width: 100%;
+  height: auto;
+}
+
+/* ===== Caption Styling ===== */
+.figure-caption {
+  text-align: center;
+  color: #9ca3af;
+  font-size: 0.9rem;
+  margin-top: 1rem;
+  font-style: italic;
+}
+
+/* ===== Smooth Dividers ===== */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border-color), transparent);
+  margin: 3rem 0;
+}
+
+/* ===== Hero Section Polish ===== */
+.hero.teaser {
+  padding-bottom: 0;
+}
+
+.hero.teaser .hero-body {
+  padding-bottom: 2rem;
+}
+
+/* ===== BibTeX Section Polish ===== */
+#BibTeX {
+  background: var(--background-primary);
+}
+
+#BibTeX pre {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+#BibTeX code {
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+
+/* ===== Footer Polish ===== */
+.footer {
+  margin-top: 0;
+}
+
+.footer p {
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+/* ===== Responsive Video Grids ===== */
+@media screen and (max-width: 768px) {
+  .columns.is-multiline .column.is-one-quarter {
+    width: 50%;
+  }
+  
+  .columns.is-multiline .column.is-one-third {
+    width: 50%;
+  }
+  
+  .logo-container {
+    gap: 1.5rem;
+  }
+  
+  .logo-container img {
+    height: 40px;
+  }
+  
+  .institution-row {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .columns.comparison-grid,
+  .columns.four-col-grid,
+  .columns.three-col-grid {
+    flex-wrap: wrap;
+  }
+
+  .comparison-grid .column,
+  .four-col-grid .column {
+    flex: 1 1 calc(50% - 1rem);
+    width: auto;
+  }
+
+  .three-col-grid .column {
+    flex: 1 1 calc(50% - 1.5rem);
+    width: auto;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .columns.comparison-grid .column,
+  .columns.four-col-grid .column,
+  .columns.three-col-grid .column {
+    flex: 1 1 100%;
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .columns.is-multiline .column.is-one-quarter,
+  .columns.is-multiline .column.is-one-third {
+    width: 100%;
+  }
+}
+
+/* ===== RSS 2026 Venue line — serif italic accent ===== */
+.venue-badge-row {
+  margin: 0.5rem 0 1.75rem;
+}
+
+.venue-badge {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 1.6rem;
+  letter-spacing: 0;
+  color: #E8475B;
+}
+
+@media screen and (max-width: 768px) {
+  .venue-badge {
+    font-size: 1.3rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .venue-badge {
+    font-size: 1.05rem;
+  }
+}
+
+/* ==========================================
+   Motivation 白底大图的暗黑模式适配
+   ========================================== */
+.motivation-figure {
+  overflow: visible;
+  padding: 2rem;
+  margin: -2rem;
+}
+
+.motivation-figure img {
+  transform-origin: center center;
+  background-color: #ffffff; 
+  border-radius: var(--border-radius-lg); 
+  
+  /* 核心：压暗 40% 亮度，防止纯白刺眼 */
+  filter: brightness(0.60) contrast(1.02); 
+  -webkit-filter: brightness(0.60) contrast(1.02); /* 兼容 Safari */
+  
+  /* 物理边缘质感阴影 */
+  box-shadow: 
+    0 10px 30px rgba(0, 0, 0, 0.8), 
+    0 0 0 1px rgba(255, 255, 255, 0.15); 
+    
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
+}
+
+.motivation-figure img:hover {
+  /* 悬浮时：恢复100%原图亮度，并微微向上浮动 4px */
+  filter: brightness(1) contrast(1);
+  -webkit-filter: brightness(1) contrast(1);
+  transform: translateY(-4px);
+  
+  /* 悬浮时：阴影变成主题青色光晕 */
+  box-shadow: 
+    0 15px 40px rgba(0, 0, 0, 0.9),
+    0 0 30px rgba(0, 166, 166, 0.2), 
+    0 0 0 1px rgba(0, 166, 166, 0.5); 
+}
