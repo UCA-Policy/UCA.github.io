@@ -767,11 +767,15 @@ a:focus {
   overflow: hidden;
   box-shadow: var(--shadow-lg);
   transition: var(--transition);
+  border: 1px solid var(--border-color);
+  padding: 0.5rem;
+  background: var(--background-secondary);
 }
 
 .video-container:hover {
   transform: translateY(-4px);
   box-shadow: var(--shadow-xl);
+  border-color: rgba(0, 166, 166, 0.4);
 }
 
 .video-label {
@@ -1159,40 +1163,104 @@ figure.image img {
 }
 
 /* ==========================================
-   Motivation 白底大图的暗黑模式适配
+   Motivation 白底大图 — 卡片框样式（深色主题适配）
+   不压暗原图，改为把白底图嵌进深色面板，做成"文档卡片"
    ========================================== */
 .motivation-figure {
-  overflow: visible;
-  padding: 2rem;
-  margin: -2rem;
+  background: var(--background-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-lg);
+  padding: 1.5rem;
+  margin: 2rem 0;
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
 }
 
 .motivation-figure img {
-  transform-origin: center center;
-  background-color: #ffffff; 
-  border-radius: var(--border-radius-lg); 
-  
-  /* 核心：压暗 40% 亮度，防止纯白刺眼 */
-  filter: brightness(0.60) contrast(1.02); 
-  -webkit-filter: brightness(0.60) contrast(1.02); /* 兼容 Safari */
-  
-  /* 物理边缘质感阴影 */
-  box-shadow: 
-    0 10px 30px rgba(0, 0, 0, 0.8), 
-    0 0 0 1px rgba(255, 255, 255, 0.15); 
-    
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
+  display: block;
+  width: 100%;
+  height: auto;
+  background-color: #ffffff;
+  border-radius: var(--border-radius);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .motivation-figure img:hover {
-  /* 悬浮时：恢复100%原图亮度，并微微向上浮动 4px */
-  filter: brightness(1) contrast(1);
-  -webkit-filter: brightness(1) contrast(1);
-  transform: translateY(-4px);
-  
-  /* 悬浮时：阴影变成主题青色光晕 */
-  box-shadow: 
-    0 15px 40px rgba(0, 0, 0, 0.9),
-    0 0 30px rgba(0, 166, 166, 0.2), 
-    0 0 0 1px rgba(0, 166, 166, 0.5); 
+  transform: translateY(-2px);
+  border-color: rgba(0, 166, 166, 0.4);
+  box-shadow:
+    0 12px 30px rgba(0, 0, 0, 0.6),
+    0 0 20px rgba(0, 166, 166, 0.15);
+}
+
+/* ==========================================
+   Overview 白底架构图 — 同款卡片框样式
+   ========================================== */
+.overview-figure {
+  background: var(--background-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-lg);
+  padding: 1.5rem;
+  margin: 2rem 0;
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
+
+.overview-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  background-color: #ffffff;
+  border-radius: var(--border-radius);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.overview-figure img:hover {
+  transform: translateY(-2px);
+  border-color: rgba(0, 166, 166, 0.4);
+  box-shadow:
+    0 12px 30px rgba(0, 0, 0, 0.6),
+    0 0 20px rgba(0, 166, 166, 0.15);
+}
+
+/* ===== Simulation Learning Curves ===== */
+.curve-grid {
+  margin-top: 0.5rem;
+}
+
+.curve-grid .column {
+  padding: 0.75rem;
+}
+
+.curve-figure {
+  margin: 0;
+  background: var(--background-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-lg);
+  padding: 0.85rem;
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
+
+.curve-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  background-color: #ffffff;
+  border-radius: var(--border-radius);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.curve-figure img:hover {
+  transform: translateY(-2px);
+  border-color: rgba(0, 166, 166, 0.4);
+  box-shadow:
+    0 12px 30px rgba(0, 0, 0, 0.6),
+    0 0 20px rgba(0, 166, 166, 0.15);
 }
