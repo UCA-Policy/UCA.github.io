@@ -1,32 +1,34 @@
-/* Modern CSS Variables for consistent theming - Dark Theme */
+/* Light content theme with dark institutional bands */
 :root {
   --primary-color: #A60000;
-  --primary-hover: #8B0000;
-  --secondary-color: #00A6A6;
-  --accent-color: #00A6A6;
-  --text-primary: #ffffff;
-  --text-secondary: #9ca3af;
-  --text-light: #6b7280;
-  --background-primary: #000000;
-  --background-secondary: #202020;
-  --background-accent: #262626;
-  --border-color: #404040;
-  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
-  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.5), 0 2px 4px -2px rgb(0 0 0 / 0.3);
-  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.6), 0 4px 6px -4px rgb(0 0 0 / 0.4);
-  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.7), 0 8px 10px -6px rgb(0 0 0 / 0.5);
+  --primary-hover: #820000;
+  --secondary-color: #177E89;
+  --accent-color: #A60000;
+  --text-primary: #171A1F;
+  --text-secondary: #5F6875;
+  --text-light: #707A87;
+  --band-dark: #3B4650;
+  --band-light: #E6EAED;
+  --background-primary: #FFFFFF;
+  --background-secondary: #F2F4F7;
+  --background-accent: #E9EDF2;
+  --border-color: #D8DEE6;
+  --shadow-sm: 0 1px 2px rgb(15 23 42 / 0.06);
+  --shadow-md: 0 4px 10px rgb(15 23 42 / 0.08);
+  --shadow-lg: 0 8px 20px rgb(15 23 42 / 0.1);
+  --shadow-xl: 0 12px 28px rgb(15 23 42 / 0.12);
   --gradient-primary: linear-gradient(135deg, #A60000 0%, #8B0000 100%);
-  --gradient-accent: linear-gradient(135deg, #00A6A6 0%, #008B8B 100%);
-  --gradient-subtle: linear-gradient(135deg, #262626 0%, #1a1a1a 100%);
-  --border-radius: 12px;
-  --border-radius-lg: 16px;
+  --gradient-accent: #A60000;
+  --gradient-subtle: #F2F4F7;
+  --border-radius: 6px;
+  --border-radius-lg: 8px;
   --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   --font-display: 'Newsreader', Georgia, 'Times New Roman', serif;
   --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
-  --card-bg: rgba(32, 32, 32, 0.6);
-  --card-bg-solid: #202020;
-  --card-stroke: rgba(64, 64, 64, 0.5);
-  --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  --card-bg: #FFFFFF;
+  --card-bg-solid: #FFFFFF;
+  --card-stroke: #D8DEE6;
+  --card-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
 }
 
 /* Smooth scrolling for better UX */
@@ -39,24 +41,24 @@ body {
   color: var(--text-primary);
   line-height: 1.65;
   font-size: 16px;
-  background-color: var(--background-primary);
+  background-color: var(--band-light);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* All titles and subtitles should be white */
+/* Content headings */
 .title, .subtitle, h1, h2, h3, h4, h5, h6 {
-  color: #000000 !important;
+  color: var(--text-primary) !important;
 }
 
-/* Keyword highlighting styles - brighter colors for better visibility on dark theme */
+/* Keyword highlighting */
 .keyword-highlight-primary {
-  color: #CA324C;
+  color: var(--primary-color);
   font-weight: 700;
 }
 
 .keyword-highlight-contrary {
-  color: #44D4D4;
+  color: var(--secondary-color);
   font-weight: 600;
 }
 
@@ -70,21 +72,21 @@ body {
 }
 
 .callout-note {
-  border-left-color: #44D4D4;
-  background-color: rgba(68, 212, 212, 0.1);
+  border-left-color: var(--secondary-color);
+  background-color: rgba(23, 126, 137, 0.08);
 }
 
 .callout-note strong {
-  color: #44D4D4;
+  color: var(--secondary-color);
 }
 
 .callout-insight {
-  border-left-color: #CA324C;
-  background-color: rgba(202, 50, 76, 0.1);
+  border-left-color: var(--primary-color);
+  background-color: rgba(166, 0, 0, 0.06);
 }
 
 .callout-insight strong {
-  color: #CA324C;
+  color: var(--primary-color);
 }
 
 .callout p {
@@ -105,8 +107,8 @@ body {
 }
 
 .button.is-dark {
-  background: var(--background-accent) !important;
-  border: none !important;
+  background: #2A2E34 !important;
+  border: 1px solid #3C424A !important;
   color: white !important;
   box-shadow: var(--shadow-md);
 }
@@ -124,19 +126,19 @@ body {
 
 .footer .icon-link {
     font-size: 25px;
-    color: var(--text-secondary);
+    color: #C9D1D9;
     transition: var(--transition);
 }
 
 .footer .icon-link:hover {
-    color: var(--secondary-color);
+    color: #FFFFFF;
     transform: translateY(-2px);
 }
 
 .link-block {
-    background: var(--background-accent);
+    background: transparent;
     border-radius: var(--border-radius);
-    padding: 4px;
+    padding: 0;
     display: inline-block;
 }
 
@@ -155,8 +157,13 @@ body {
   overflow: hidden;
 }
 
+.publication-hero {
+  background: var(--band-dark);
+  color: #FFFFFF;
+}
+
 .hero.is-light {
-  background: var(--background-secondary);
+  background: var(--band-light);
   border-top: 1px solid var(--border-color);
   border-bottom: 1px solid var(--border-color);
 }
@@ -182,7 +189,7 @@ body {
     color: #ffffff !important;
     margin-bottom: 1.5rem !important;
     line-height: 1.1 !important;
-    letter-spacing: -0.015em !important;
+    letter-spacing: 0 !important;
 }
 
 .publication-subtitle {
@@ -220,6 +227,10 @@ body {
     margin-bottom: 1.5rem;
 }
 
+.publication-hero .publication-authors {
+  color: #E6E8EB;
+}
+
 .publication-venue {
     color: var(--text-secondary);
     width: fit-content;
@@ -243,7 +254,7 @@ body {
 }
 
 .publication-authors a {
-   color: var(--secondary-color) !important;
+   color: #F4BCC3 !important;
    text-decoration: none;
    font-weight: 600;
    transition: var(--transition);
@@ -257,7 +268,7 @@ body {
     height: 2px;
     bottom: -2px;
     left: 0;
-    background: var(--gradient-accent);
+    background: #D84A5A;
     transition: var(--transition);
 }
 
@@ -266,8 +277,8 @@ body {
 }
 
 .publication-authors a:hover {
-    color: var(--accent-color) !important;
-    filter: brightness(1.2);
+    color: #FFFFFF !important;
+    filter: none;
 }
 
 .author-block {
@@ -433,8 +444,8 @@ figure.image {
 .title.is-3 {
   font-family: var(--font-display) !important;
   font-weight: 600 !important;
-  color: #ffffff !important;
-  letter-spacing: -0.01em;
+  color: var(--text-primary) !important;
+  letter-spacing: 0;
   margin-bottom: 2rem !important;
   position: relative;
   padding-bottom: 1rem;
@@ -481,7 +492,7 @@ figure.image {
 }
 
 .content strong {
-  color: #ffffff;
+  color: var(--text-primary);
 }
 
 /* Table Styling */
@@ -491,7 +502,7 @@ figure.image {
 }
 
 .table {
-  background-color: var(--background-secondary);
+  background-color: #FFFFFF;
   color: var(--text-primary);
   width: 100%;
   border-collapse: collapse;
@@ -499,7 +510,7 @@ figure.image {
 
 .table th {
   background-color: var(--background-accent) !important;
-  color: #ffffff !important;
+  color: var(--text-primary) !important;
   border-color: var(--border-color) !important;
   font-weight: 600;
   padding: 1rem;
@@ -517,16 +528,16 @@ figure.image {
 }
 
 .table tbody tr.is-selected {
-  background-color: rgba(0, 166, 166, 0.15) !important;
+  background-color: rgba(166, 0, 0, 0.07) !important;
 }
 
 .table tbody tr.is-selected td {
-  color: #ffffff;
+  color: var(--primary-color);
   border-color: var(--border-color) !important;
 }
 
 .table.is-striped tbody tr:not(.is-selected):nth-child(even) {
-  background-color: var(--background-secondary);
+  background-color: #F7F8FA;
 }
 
 .table.is-striped tbody tr:not(.is-selected):nth-child(odd) {
@@ -547,8 +558,8 @@ figure.image {
 
 /* Footer Improvements */
 .footer {
-  background: var(--background-secondary);
-  border-top: 1px solid var(--border-color);
+  background: var(--band-dark);
+  border-top: 1px solid #2C3138;
   padding: 3rem 1.5rem;
 }
 
@@ -562,14 +573,14 @@ figure.image {
 }
 
 .footer a {
-  color: var(--secondary-color);
+  color: #F4BCC3;
   text-decoration: none;
   transition: var(--transition);
 }
 
 .footer a:hover {
-  color: var(--accent-color);
-  filter: brightness(1.2);
+  color: #FFFFFF;
+  filter: none;
   text-decoration: underline;
 }
 
@@ -592,14 +603,54 @@ code {
 
 /* Section styling */
 .section {
-  background-color: var(--background-primary);
+  background-color: var(--band-light);
   padding: 3rem 1.5rem;
 }
 
 .section.hero.is-light {
-  background: var(--background-secondary) !important;
+  background: var(--band-light);
   border-top: 1px solid var(--border-color);
   border-bottom: 1px solid var(--border-color);
+}
+
+main > .section:nth-of-type(odd) {
+  background: var(--band-dark) !important;
+}
+
+main > .section:nth-of-type(even) {
+  background: var(--band-light) !important;
+}
+
+main > .section:nth-of-type(odd) .title {
+  color: #FFFFFF !important;
+}
+
+main > .section:nth-of-type(odd) .content.has-text-justified > p,
+main > .section:nth-of-type(odd) .content.has-text-justified > ul,
+main > .section:nth-of-type(odd) .content.has-text-justified > ol {
+  color: #E2E7EB !important;
+}
+
+main > .section:nth-of-type(odd) .content.has-text-justified > ul strong,
+main > .section:nth-of-type(odd) .content.has-text-justified > ol strong {
+  color: #FFFFFF !important;
+}
+
+main > .section:nth-of-type(odd) .keyword-highlight-primary {
+  color: #FFADB8;
+}
+
+main > .section:nth-of-type(odd) .keyword-highlight-contrary {
+  color: #91D6DB;
+}
+
+main > .section:nth-of-type(odd) .title.is-4 {
+  border-bottom-color: rgb(255 255 255 / 0.22);
+}
+
+#demo-video {
+  max-width: 900px;
+  margin: 0 auto;
 }
 
 /* Utility Classes */
@@ -648,6 +699,7 @@ code {
   
   .content.has-text-justified {
     font-size: 1rem;
+    text-align: left !important;
   }
   
   .section {
@@ -768,14 +820,14 @@ a:focus {
   box-shadow: var(--shadow-lg);
   transition: var(--transition);
   border: 1px solid var(--border-color);
-  padding: 0.5rem;
-  background: var(--background-secondary);
+  padding: 0.625rem;
+  background: #FFFFFF;
 }
 
 .video-container:hover {
-  transform: translateY(-4px);
+  transform: translateY(-2px);
   box-shadow: var(--shadow-xl);
-  border-color: rgba(0, 166, 166, 0.4);
+  border-color: #B8C0CB;
 }
 
 .video-label {
@@ -784,14 +836,14 @@ a:focus {
 }
 
 .video-label strong {
-  color: #ffffff;
+  color: var(--text-primary);
   font-size: 0.95rem;
 }
 
 .video-label .subtitle-text {
   display: block;
   font-size: 0.8rem;
-  color: #9ca3af;
+  color: var(--text-secondary);
   margin-top: 0.25rem;
 }
 
@@ -825,7 +877,7 @@ a:focus {
 .comparison-grid video {
   aspect-ratio: 16 / 9;
   object-fit: contain;
-  background: #0b0b0b;
+  background: #FFFFFF;
 }
 
 /* Four column grid - Visual Generalization */
@@ -903,22 +955,22 @@ a:focus {
 
 .institution-name {
   font-weight: 700;
-  color: var(--text-primary);
+  color: #FFFFFF;
 }
 
 .equal-contrib {
-  color: #9ca3af;
+  color: #C7CDD5;
   font-size: 0.85rem;
 }
 
 .author-note {
-  color: #9ca3af;
+  color: #C7CDD5;
   font-size: 0.75rem;
 }
 
 /* ===== Section Title Enhancements ===== */
 .title.is-4 {
-  color: #ffffff !important;
+  color: var(--text-primary) !important;
   font-weight: 600;
   margin-top: 2.5rem !important;
   margin-bottom: 1rem !important;
@@ -927,7 +979,7 @@ a:focus {
 }
 
 .title.is-5 {
-  color: #ffffff !important;
+  color: var(--text-primary) !important;
   font-weight: 600;
   margin-top: 2rem !important;
   margin-bottom: 0.75rem !important;
@@ -949,7 +1001,7 @@ a:focus {
   text-align: center !important;
   font-size: 0.9rem;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 0;
 }
 
 .table td {
@@ -961,50 +1013,67 @@ a:focus {
   text-align: left !important;
   font-weight: 500;
 }
-/* ==========================================
-   视频卡片基础样式 (适用于第三板块的纯黑背景)
-   ========================================== */
+/* Light video cards for white-background media */
 .video-card {
-  background-color: #1A1A1A; /* 提亮一点的深灰，在纯黑底上清晰可见 */
-  border-radius: var(--border-radius-lg);
-  padding: 1.25rem;
-  /* 加一层非常微弱的半透明白边，增强质感 */
-  border: 1px solid rgba(255, 255, 255, 0.06); 
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-  transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+  background-color: #FFFFFF;
+  border-radius: var(--border-radius);
+  padding: 0.625rem;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-md);
+  transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
   position: relative;
 }
 
 .video-card video {
-  border-radius: 8px;
+  display: block;
+  border-radius: 4px;
   width: 100%;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  border: 1px solid #E6EAF0;
+  box-shadow: none;
+}
+
+#realworld-attention .video-card video {
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
 }
 
 .video-card .video-title {
   text-align: center;
-  margin-bottom: 0.875rem;
+  margin: 0 0 0.625rem;
   font-weight: 600;
   font-size: 0.95rem;
-  color: rgba(255, 255, 255, 0.95);
+  color: var(--text-primary);
 }
 
-/* ==========================================
-   视频卡片自适应样式 (适用于第四板块的 .is-light 深灰背景)
-   ========================================== */
 .hero.is-light .video-card {
-  background-color: #050505; /* 压得很暗的纯黑，与深灰背景拉开对比 */
-  border: 1px solid rgba(255, 255, 255, 0.1); /* 边框稍微提亮一点点，框住白底视频 */
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  background-color: #FFFFFF;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-md);
 }
 
-/* --- 统一的悬浮 (Hover) 特效 --- */
 .video-card:hover {
-  transform: translateY(-4px);
-  border-color: rgba(0, 220, 220, 0.5); /* 你的主题青色 */
-  box-shadow: 
-    0 16px 40px -8px rgba(0, 0, 0, 0.6),
-    0 0 20px -4px rgba(0, 200, 200, 0.25);
+  transform: translateY(-2px);
+  border-color: #B8C0CB;
+  box-shadow: var(--shadow-lg);
+}
+
+#realworld-comparison .video-card {
+  background-color: #27313A;
+  border-color: #53606C;
+  box-shadow: 0 8px 20px rgb(15 23 42 / 0.24);
+}
+
+#realworld-comparison .video-card .video-title {
+  color: #F5F7F9;
+}
+
+#realworld-comparison .video-card video {
+  border-color: #45515B;
+}
+
+#realworld-comparison .video-card:hover {
+  background-color: #2D3842;
+  border-color: #74818D;
 }
 
 /* ===== Gradient Accents ===== */
@@ -1053,7 +1122,7 @@ figure.image img {
 
 /* ===== BibTeX Section Polish ===== */
 #BibTeX {
-  background: var(--background-primary);
+  background: var(--band-light);
 }
 
 #BibTeX pre {
@@ -1090,8 +1159,12 @@ figure.image img {
     gap: 1.5rem;
   }
   
-  .logo-container img {
-    height: 40px;
+  .logo-container img.ntu-logo {
+    height: 54px;
+  }
+
+  .logo-container img.mars-logo {
+    height: 56px;
   }
   
   .institution-row {
@@ -1162,17 +1235,14 @@ figure.image img {
   }
 }
 
-/* ==========================================
-   Motivation 白底大图 — 卡片框样式（深色主题适配）
-   不压暗原图，改为把白底图嵌进深色面板，做成"文档卡片"
-   ========================================== */
+/* White figures on light paper-style frames */
 .motivation-figure {
-  background: var(--background-secondary);
+  background: #FFFFFF;
   border: 1px solid var(--border-color);
-  border-radius: var(--border-radius-lg);
-  padding: 1.5rem;
+  border-radius: var(--border-radius);
+  padding: 0.75rem;
   margin: 2rem 0;
-  box-shadow: var(--shadow-lg);
+  box-shadow: var(--shadow-md);
   overflow: hidden;
 }
 
@@ -1181,30 +1251,25 @@ figure.image img {
   width: 100%;
   height: auto;
   background-color: #ffffff;
-  border-radius: var(--border-radius);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 4px;
+  border: 1px solid #E6EAF0;
+  box-shadow: none;
+  transition: border-color 0.22s ease, box-shadow 0.22s ease;
 }
 
 .motivation-figure img:hover {
-  transform: translateY(-2px);
-  border-color: rgba(0, 166, 166, 0.4);
-  box-shadow:
-    0 12px 30px rgba(0, 0, 0, 0.6),
-    0 0 20px rgba(0, 166, 166, 0.15);
+  transform: none;
+  border-color: #B8C0CB;
+  box-shadow: var(--shadow-sm);
 }
 
-/* ==========================================
-   Overview 白底架构图 — 同款卡片框样式
-   ========================================== */
 .overview-figure {
-  background: var(--background-secondary);
+  background: #FFFFFF;
   border: 1px solid var(--border-color);
-  border-radius: var(--border-radius-lg);
-  padding: 1.5rem;
+  border-radius: var(--border-radius);
+  padding: 0.75rem;
   margin: 2rem 0;
-  box-shadow: var(--shadow-lg);
+  box-shadow: var(--shadow-md);
   overflow: hidden;
 }
 
@@ -1213,18 +1278,16 @@ figure.image img {
   width: 100%;
   height: auto;
   background-color: #ffffff;
-  border-radius: var(--border-radius);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 4px;
+  border: 1px solid #E6EAF0;
+  box-shadow: none;
+  transition: border-color 0.22s ease, box-shadow 0.22s ease;
 }
 
 .overview-figure img:hover {
-  transform: translateY(-2px);
-  border-color: rgba(0, 166, 166, 0.4);
-  box-shadow:
-    0 12px 30px rgba(0, 0, 0, 0.6),
-    0 0 20px rgba(0, 166, 166, 0.15);
+  transform: none;
+  border-color: #B8C0CB;
+  box-shadow: var(--shadow-sm);
 }
 
 /* ===== Simulation Learning Curves ===== */
@@ -1238,11 +1301,11 @@ figure.image img {
 
 .curve-figure {
   margin: 0;
-  background: var(--background-secondary);
+  background: #FFFFFF;
   border: 1px solid var(--border-color);
-  border-radius: var(--border-radius-lg);
-  padding: 0.85rem;
-  box-shadow: var(--shadow-lg);
+  border-radius: var(--border-radius);
+  padding: 0.625rem;
+  box-shadow: var(--shadow-md);
   overflow: hidden;
 }
 
@@ -1251,16 +1314,14 @@ figure.image img {
   width: 100%;
   height: auto;
   background-color: #ffffff;
-  border-radius: var(--border-radius);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 4px;
+  border: 1px solid #E6EAF0;
+  box-shadow: none;
+  transition: border-color 0.22s ease, box-shadow 0.22s ease;
 }
 
 .curve-figure img:hover {
-  transform: translateY(-2px);
-  border-color: rgba(0, 166, 166, 0.4);
-  box-shadow:
-    0 12px 30px rgba(0, 0, 0, 0.6),
-    0 0 20px rgba(0, 166, 166, 0.15);
+  transform: none;
+  border-color: #B8C0CB;
+  box-shadow: var(--shadow-sm);
 }

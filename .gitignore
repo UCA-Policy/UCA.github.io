@@ -10,7 +10,11 @@
 *.log
 
 *.zip
+*.mov
 
+# Local source and superseded videos
+/static/videos/UCA-Flow/UCA-Flow.mp4
+/static/videos/real_world/8月16日/
 # Editor files
 .vscode/
 .idea/
