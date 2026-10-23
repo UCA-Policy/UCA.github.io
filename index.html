@@ -127,7 +127,7 @@
                     </a>
                   </span>
                   <span class="link-block">
-                    <a href="UCA.pdf" class="external-link button is-dark" target="_blank" rel="noopener noreferrer">
+                    <a href="UCA.pdf?v=20261023" class="external-link button is-dark" target="_blank" rel="noopener noreferrer">
                       <span class="icon">
                         <i class="fas fa-file-pdf"></i>
                       </span>
@@ -174,7 +174,7 @@
                 <span class="keyword-highlight-contrary">Our method unifies observation conditions, timestep conditions, interval conditions, and action tokens into a single sequence, and processes them with a Unified Condition-Action Transformer for joint condition-action representation learning. </span>
                 As a result, condition representations are dynamically reconstructed according to the current generation stage, highlighting information most relevant for action refinement. 
                 <span class="keyword-highlight-contrary">Furthermore, we  introduce an improved dual-pass supervision scheme over \( u \) and \( v \) for stronger optimization of unified condition-action modeling. </span>
-                UCA-Flow improves the average success rate by <span class="keyword-highlight-primary">9.3</span> percentage points over the strongest baseline, while achieving <span class="keyword-highlight-primary">45.6&times </span> and <span class="keyword-highlight-primary">33.4&times</span> speed ups over DP3 and Simple DP3, and remaining <span class="keyword-highlight-primary">4.3&times</span> and <span class="keyword-highlight-primary">2.3&times</span> times faster than one-step FlowPolicy and MP1, respectively.
+                UCA-Flow achieves an average success rate of <span class="keyword-highlight-primary">86.4%</span>, improving over the strongest baseline by <span class="keyword-highlight-primary">7.5</span> percentage points, with a task-averaged inference latency of <span class="keyword-highlight-primary">3.0 ms</span>. It achieves <span class="keyword-highlight-primary">43.9&times;</span> and <span class="keyword-highlight-primary">32.2&times;</span> speedups over DP3 and Simple DP3, and remains <span class="keyword-highlight-primary">4.2&times;</span> and <span class="keyword-highlight-primary">2.2&times;</span> faster than one-step FlowPolicy and MP1, respectively.
               </p>
             </div>
             <div class="has-text-centered mt-4" id="demo-video">
@@ -185,6 +185,7 @@
                 </video>
               </div>
             </div>
+            <p style="color: #6b7280; font-size: 0.9em; margin-top: 0.75rem;">The overview video predates the benchmark aggregation corrections. Please refer to the updated figure, tables, and paper for current success rates and latency comparisons.</p>
           </div>
         </div>
       </div>
@@ -203,10 +204,10 @@
               <ul>
                 <li>(a) Existing policies often treat condition as auxiliary condition signals. Unified condition-action modeling enables conditions and actions to evolve together,
                 allowing condition representations to adapt to the current generation stage and action. </li>
-                <li>(b) UCA-Flow achieves a superior efficiency-performance trade-off, delivering the highest success rate with the lowest latency on Adroit and MetaWorld.</li>
+                <li>(b) UCA-Flow achieves 86.4% average success and 3.0 ms task-averaged latency on 37 Adroit and Meta-World tasks: 17.7 percentage points higher success and a 43.9&times; speedup over DP3. Speedups use task-weighted latencies before rounding.</li>
               </ul>
               <figure class="image motivation-figure" style="margin-top: 2rem;">
-                <img src="static/images/motivation-copy.png" alt="UCA Motivation" />
+                <img src="static/images/motivation-copy.png?v=20261023" alt="UCA-Flow motivation: 86.4% success, 3.0 ms task-averaged latency, and a 43.9-fold speedup over DP3" />
               </figure>
             </div>
           </div>
@@ -249,8 +250,8 @@
                 We rigorously evaluated UCA-Flow across 37 tasks spanning the Adroit and Meta-World benchmarks. The results demonstrate that unifying condition and action modeling fundamentally optimizes the inference mechanics, yielding significant improvements in both accuracy and computational efficiency.
               </p>
               <ul>
-                <li><span class="keyword-highlight-primary">Highest Success Rate:</span> Achieves an average success rate of <strong>88.2%</strong>, outperforming multi-step diffusion baselines like DP3.</li>
-                <li><span class="keyword-highlight-primary">Ultra-Low Latency:</span> Requiring only a single function evaluation (NFE=1), the inference time is reduced to just <strong>2.9 ms</strong>, ideal for high-frequency real-time control.</li>
+                <li><span class="keyword-highlight-primary">Highest Success Rate:</span> Achieves an average success rate of <strong>86.4 &plusmn; 0.3%</strong>, exceeding the reported MP1 mean by 7.5 percentage points.</li>
+                <li><span class="keyword-highlight-primary">Low Policy-Query Latency:</span> Requires one function evaluation (NFE=1), with a task-averaged inference latency of <strong>3.0 ms</strong>. This is the benchmark policy-query timing, not the complete physical robot control-loop time.</li>
               </ul>
             </div>
           </div>
@@ -265,7 +266,7 @@
           <div class="column is-full">
             <div class="content has-text-justified">
               <h3 class="title is-4" style="margin-top: 0 !important;">Success Rate Comparison</h3>
-              <p style="color: #6b7280; font-size: 0.9em; margin-bottom: 0.5rem;">Evaluated on 37 Adroit and Meta-World tasks. Best results are highlighted in bold.</p>
+              <p style="color: #6b7280; font-size: 0.9em; margin-bottom: 0.5rem;">Evaluated on 37 Adroit and Meta-World tasks, with each task weighted equally. UCA-Flow group and overall statistics average tasks within each seed before computing the mean and sample standard deviation across three seeds. Baseline summaries are retained as reported. Best results are highlighted in bold.</p>
               <div class="table-container" style="overflow-x: auto; max-width: 100%; display: block;">
                 <table class="table is-bordered is-striped has-text-centered" style="font-size: 0.85em; white-space: nowrap; min-width: max-content; margin: 0 auto;">
                   <thead>
@@ -345,20 +346,20 @@
                       <td><strong>Ours</strong></td>
                       <td><strong>1</strong></td>
                       <td><strong>100 &plusmn; 0</strong></td>
-                      <td><strong>77.3 &plusmn; 2.0</strong></td>
-                      <td><strong>63.0 &plusmn; 3.4</strong></td>
-                      <td><strong>92.4 &plusmn; 1.2</strong></td>
-                      <td><strong>79.3 &plusmn; 3.4</strong></td>
-                      <td><strong>68.0 &plusmn; 2.0</strong></td>
-                      <td><strong>85.3 &plusmn; 2.0</strong></td>
-                      <td><strong>88.2 &plusmn; 1.7</strong></td>
+                      <td><strong>77.3 &plusmn; 2.1</strong></td>
+                      <td><strong>63.2 &plusmn; 3.4</strong></td>
+                      <td><strong>92.4 &plusmn; 0.7</strong></td>
+                      <td><strong>79.3 &plusmn; 1.8</strong></td>
+                      <td><strong>68.0 &plusmn; 1.9</strong></td>
+                      <td><strong>85.3 &plusmn; 0.7</strong></td>
+                      <td><strong>86.4 &plusmn; 0.3</strong></td>
                     </tr>
                   </tbody>
                 </table>
               </div>
               
               <h3 class="title is-4" style="margin-top: 3rem;">Inference Time Comparison (ms)</h3>
-              <p style="color: #6b7280; font-size: 0.9em; margin-bottom: 0.5rem;">Reported inference latency in milliseconds with standard deviation.</p>
+              <p style="color: #6b7280; font-size: 0.9em; margin-bottom: 0.5rem;">Inference latency in milliseconds with reported standard deviation. Overall means weight task groups by their task counts; speedup ratios are computed before rounding the overall means.</p>
               <div class="table-container" style="overflow-x: auto; max-width: 100%; display: block;">
                 <table class="table is-bordered is-striped has-text-centered" style="font-size: 0.85em; white-space: nowrap; min-width: max-content; margin: 0 auto;">
                   <thead>
@@ -444,7 +445,7 @@
                       <td><strong>2.9 &plusmn; 0.1</strong></td>
                       <td><strong>3.0 &plusmn; 0.1</strong></td>
                       <td><strong>2.8 &plusmn; 0.1</strong></td>
-                      <td><strong>2.9 &plusmn; 0.1</strong></td>
+                      <td><strong>3.0 &plusmn; 0.1</strong></td>
                     </tr>
                   </tbody>
                 </table>
